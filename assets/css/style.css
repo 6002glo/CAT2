@@ -1,14 +1,94 @@
+/* ===== SHOP PAGE STYLES ===== */
 
-/* my Anime theme colors */
-:root {
-    --primary-color: #ff6b6b;    /* Warm red */
-    --secondary-color: #4ecdc4;   /* Teal */
-    --dark-color: #2d3436;        /* Dark gray */
-    --light-color: #f8f9fa;       /* Off-white */
+.shop-header {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+    color: white;
+    margin-top: -70px;
+    padding-top: 120px !important;
 }
 
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: var(--light-color);
+.shop-header h1 {
+    color: white;
+    text-shadow: none;
 }
 
+/* Product Cards */
+.product-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    border-color: #ff6b6b;
+}
+
+.product-icon {
+    font-size: 4rem;
+    line-height: 1.2;
+}
+
+/* Filter Buttons */
+.filter-btn {
+    margin: 0 5px;
+    padding: 8px 20px;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+}
+
+.filter-btn.active {
+    background-color: #ff6b6b;
+    border-color: #ff6b6b;
+    color: white;
+}
+
+.filter-btn:hover {
+    transform: scale(1.05);
+}
+
+/* Product Grid Animation */
+.product-item {
+    transition: all 0.4s ease;
+}
+
+.product-item.hidden {
+    display: none;
+}
+
+/* Cart Notification */
+#cartNotification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    max-width: 300px;
+    z-index: 1000;
+    animation: slideIn 0.5s ease;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Add to Cart Button Animation */
+.add-to-cart {
+    transition: all 0.3s ease;
+}
+
+.add-to-cart:active {
+    transform: scale(0.9);
+}
+
+/* Badge Styles */
+.badge {
+    font-size: 1rem;
+    padding: 5px 15px;
+}
