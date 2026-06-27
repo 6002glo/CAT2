@@ -3,51 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anime Hub - Shop</title>
+    <meta name="description" content="Anime Hub Merchandise - Exclusive collectibles, apparel, and accessories for true anime fans">
+    <title>Anime Hub - Anime Merchandise | Exclusive Collectibles</title>
     
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <!-- Your Custom CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 
-    <!-- ===== NAVBAR (SAME ON ALL PAGES) ===== -->
+    <div id="loadingSpinner" style="position:fixed;top:0;left:0;width:100%;height:100%;background:white;display:flex;align-items:center;justify-content:center;z-index:9999;">
+        <div style="font-size:3rem;">🎌</div>
+    </div>
+
+    <!-- ===== NAVBAR ===== -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
             <a class="navbar-brand fw-bold" href="index.html">🎌 Anime Hub</a>
-            
-            <!-- Mobile Toggle Button -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            
-            <!-- Navbar Links -->
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">Home</a>
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="hub.html">Community Hub</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" href="#" id="shopDropdown" role="button" data-bs-toggle="dropdown">
+                            Shop
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item active" href="shop.html">All Merchandise</a></li>
+                            <li><a class="dropdown-item" href="shop-jujutsu.html">Jujutsu Kaisen</a></li>
+                            <li><a class="dropdown-item" href="shop-onepiece.html">One Piece</a></li>
+                            <li><a class="dropdown-item" href="shop-others.html">Other Anime</a></li>
+                        </ul>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="about.html">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="hub.html">Community Hub</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="shop.html">Shop</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="contact_us.html">Contact</a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
     <!-- ===== SHOP HEADER ===== -->
-    <section class="shop-header py-5 mt-5 bg-light">
+    <section class="shop-header py-5 mt-5">
         <div class="container text-center">
             <h1 class="display-3 fw-bold anime-title">🛍️ Anime Merchandise</h1>
             <p class="lead">Exclusive collectibles, apparel, and accessories for true anime fans</p>
@@ -58,21 +58,96 @@
     <section class="shop-grid py-5">
         <div class="container">
             
-            <!-- Filter Buttons (JavaScript Feature) -->
-            <div class="row mb-4">
-                <div class="col-12 text-center">
+            <!-- Category Quick Links -->
+            <div class="row mb-4 text-center">
+                <div class="col-12">
+                    <h5>Shop by Category:</h5>
                     <div class="btn-group" role="group">
-                        <button class="btn btn-primary filter-btn active" data-filter="all">All Items</button>
-                        <button class="btn btn-outline-primary filter-btn" data-filter="jujutsu">Jujutsu Kaisen</button>
-                        <button class="btn btn-outline-primary filter-btn" data-filter="onepiece">One Piece</button>
-                        <button class="btn btn-outline-primary filter-btn" data-filter="other">Other Anime</button>
+                        <a href="shop.html" class="btn btn-primary">All</a>
+                        <a href="shop-jujutsu.html" class="btn btn-outline-primary">Jujutsu Kaisen</a>
+                        <a href="shop-onepiece.html" class="btn btn-outline-primary">One Piece</a>
+                        <a href="shop-others.html" class="btn btn-outline-primary">Other Anime</a>
                     </div>
                 </div>
             </div>
             
+            <!-- Product Grid -->
+            <div class="row g-4" id="productGrid">
+                <!-- Product 1 -->
+                <div class="col-md-4 col-sm-6 product-item" data-category="jujutsu">
+                    <div class="card h-100 shadow product-card">
+                        <div class="card-body text-center">
+                            <div class="product-icon" style="font-size: 4rem;">👕</div>
+                            <h4 class="card-title mt-2">Jujutsu High T-Shirt</h4>
+                            <p class="card-text text-muted">Official Jujutsu Kaisen apparel</p>
+                            <span class="badge bg-danger">$29.99</span>
+                            <a href="shop-jujutsu.html" class="btn btn-outline-primary btn-sm mt-2">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-sm-6 product-item" data-category="jujutsu">
+                    <div class="card h-100 shadow product-card">
+                        <div class="card-body text-center">
+                            <div class="product-icon" style="font-size: 4rem;">📿</div>
+                            <h4 class="card-title mt-2">Gojo's Blindfold</h4>
+                            <p class="card-text text-muted">Replica of Satoru Gojo's signature blindfold</p>
+                            <span class="badge bg-danger">$19.99</span>
+                            <a href="shop-jujutsu.html" class="btn btn-outline-primary btn-sm mt-2">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-sm-6 product-item" data-category="onepiece">
+                    <div class="card h-100 shadow product-card">
+                        <div class="card-body text-center">
+                            <div class="product-icon" style="font-size: 4rem;">🏴‍☠️</div>
+                            <h4 class="card-title mt-2">Straw Hat Pirates Flag</h4>
+                            <p class="card-text text-muted">Official One Piece crew flag</p>
+                            <span class="badge bg-danger">$24.99</span>
+                            <a href="shop-onepiece.html" class="btn btn-outline-primary btn-sm mt-2">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-sm-6 product-item" data-category="onepiece">
+                    <div class="card h-100 shadow product-card">
+                        <div class="card-body text-center">
+                            <div class="product-icon" style="font-size: 4rem;">⚔️</div>
+                            <h4 class="card-title mt-2">Zoro's Sword Replica</h4>
+                            <p class="card-text text-muted">Enma sword replica from One Piece</p>
+                            <span class="badge bg-danger">$39.99</span>
+                            <a href="shop-onepiece.html" class="btn btn-outline-primary btn-sm mt-2">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-sm-6 product-item" data-category="other">
+                    <div class="card h-100 shadow product-card">
+                        <div class="card-body text-center">
+                            <div class="product-icon" style="font-size: 4rem;">🎭</div>
+                            <h4 class="card-title mt-2">Naruto Headband</h4>
+                            <p class="card-text text-muted">Hidden Leaf Village headband</p>
+                            <span class="badge bg-danger">$14.99</span>
+                            <a href="shop-others.html" class="btn btn-outline-primary btn-sm mt-2">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-sm-6 product-item" data-category="other">
+                    <div class="card h-100 shadow product-card">
+                        <div class="card-body text-center">
+                            <div class="product-icon" style="font-size: 4rem;">🐉</div>
+                            <h4 class="card-title mt-2">Dragon Ball Z Scouter</h4>
+                            <p class="card-text text-muted">Vegeta's signature scouter device</p>
+                            <span class="badge bg-danger">$34.99</span>
+                            <a href="shop-others.html" class="btn btn-outline-primary btn-sm mt-2">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
             
-            
-            <!-- Cart Notification (JavaScript Feature) -->
+            <!-- Cart Notification -->
             <div id="cartNotification" class="alert alert-success mt-4 d-none">
                 ✅ Item added to cart! 🛒
             </div>
@@ -82,14 +157,42 @@
 
     <!-- ===== FOOTER ===== -->
     <footer class="bg-dark text-white py-4 mt-5">
-        <div class="container text-center">
-            <p class="mb-0">© 2026 Anime Hub. </p>
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-4 mb-3">
+                    <h5>Follow Us</h5>
+                    <div>
+                        <a href="#" style="color:white;margin:0 10px;font-size:1.5rem;">🐦</a>
+                        <a href="#" style="color:white;margin:0 10px;font-size:1.5rem;">📸</a>
+                        <a href="#" style="color:white;margin:0 10px;font-size:1.5rem;">▶️</a>
+                        <a href="#" style="color:white;margin:0 10px;font-size:1.5rem;">💬</a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5>Quick Links</h5>
+                    <div>
+                        <a href="index.html" style="color:white;text-decoration:none;margin:0 10px;">Home</a>
+                        <a href="shop.html" style="color:white;text-decoration:none;margin:0 10px;">Shop</a>
+                        <a href="contact.html" style="color:white;text-decoration:none;margin:0 10px;">Contact</a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5>Newsletter</h5>
+                    <p>Stay updated with our latest news!</p>
+                    <input type="email" placeholder="Your email" style="padding:5px 10px;border-radius:5px;border:none;width:80%;">
+                </div>
+            </div>
+            <div class="text-center mt-3">
+                <p class="mb-0">© 2026 Anime Hub. Made with ❤️ for all anime fans.</p>
+            </div>
         </div>
     </footer>
 
-    <!-- Bootstrap JS -->
+    <button onclick="topFunction()" id="backToTopBtn" style="display:none;position:fixed;bottom:20px;right:20px;z-index:99;background:#ff6b6b;color:white;border:none;border-radius:50%;padding:15px;font-size:20px;cursor:pointer;box-shadow:0 4px 10px rgba(0,0,0,0.2);">
+        ↑
+    </button>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Your Custom JS -->
     <script src="assets/js/main.js"></script>
 </body>
 </html>
