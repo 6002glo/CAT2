@@ -1,5 +1,6 @@
 // ============================================
 // ANIME HUB - MAIN JAVASCRIPT
+// MILESTONE 3 - COMPLETE
 // ============================================
 
 // Wait for the page to load fully
@@ -14,14 +15,12 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
-            e.preventDefault(); // Stop page refresh
+            e.preventDefault();
             
-            // Get form values
             const name = document.getElementById('name').value.trim();
             const email = document.getElementById('email').value.trim();
             const message = document.getElementById('message').value.trim();
             
-            // Validation
             let errors = [];
             
             if (name === '') {
@@ -40,17 +39,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 errors.push('Message must be at least 10 characters long.');
             }
             
-            // Show errors or success
             if (errors.length > 0) {
                 alert('⚠️ Please fix the following issues:\n\n' + errors.join('\n'));
                 return;
             }
             
-            // If all valid, show success message
             successMessage.classList.remove('d-none');
             contactForm.reset();
             
-            // Hide message after 5 seconds
             setTimeout(() => {
                 successMessage.classList.add('d-none');
             }, 5000);
@@ -65,25 +61,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const cartNotification = document.getElementById('cartNotification');
     
     if (filterButtons.length > 0) {
-        // Add click event to each filter button
         filterButtons.forEach(button => {
             button.addEventListener('click', function() {
-                // Remove active class from all buttons
                 filterButtons.forEach(btn => btn.classList.remove('active'));
-                
-                // Add active class to clicked button
                 this.classList.add('active');
                 
-                // Get filter value
                 const filterValue = this.getAttribute('data-filter');
                 
-                // Filter products
                 productItems.forEach(item => {
                     const category = item.getAttribute('data-category');
                     
                     if (filterValue === 'all' || category === filterValue) {
                         item.classList.remove('hidden');
-                        // Add animation
                         item.style.animation = 'fadeIn 0.5s ease';
                     } else {
                         item.classList.add('hidden');
@@ -94,32 +83,28 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // ============================================
-    // FEATURE 3: ADD TO CART (Bonus Feature)
+    // FEATURE 3: ADD TO CART
     // ============================================
     const addToCartButtons = document.querySelectorAll('.add-to-cart');
     
     if (addToCartButtons.length > 0) {
         addToCartButtons.forEach(button => {
             button.addEventListener('click', function(e) {
-                e.stopPropagation(); // Prevent card click
+                e.stopPropagation();
                 
-                // Get product info
                 const card = this.closest('.product-card');
                 const productName = card.querySelector('.card-title').textContent;
                 const productPrice = card.querySelector('.badge').textContent;
                 
-                // Show notification
                 if (cartNotification) {
                     cartNotification.textContent = `✅ ${productName} (${productPrice}) added to cart! 🛒`;
                     cartNotification.classList.remove('d-none');
                     
-                    // Hide after 3 seconds
                     setTimeout(() => {
                         cartNotification.classList.add('d-none');
                     }, 3000);
                 }
                 
-                // Button feedback
                 this.textContent = '✅ Added!';
                 this.classList.remove('btn-outline-primary');
                 this.classList.add('btn-success');
@@ -134,18 +119,116 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // ============================================
-    // PRODUCT CARD CLICK (View Details)
+    // FEATURE 4: GALLERY FILTER
+    // ============================================
+    const galleryFilterButtons = document.querySelectorAll('.gallery-filter-btn');
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    
+    if (galleryFilterButtons.length > 0) {
+        galleryFilterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                galleryFilterButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                
+                const filterValue = this.getAttribute('data-filter');
+                
+                galleryItems.forEach(item => {
+                    const category = item.getAttribute('data-category');
+                    
+                    if (filterValue === 'all' || category === filterValue) {
+                        item.classList.remove('hidden');
+                        item.style.animation = 'fadeIn 0.5s ease';
+                    } else {
+                        item.classList.add('hidden');
+                    }
+                });
+            });
+        });
+    }
+    
+    // ============================================
+    // FEATURE 5: LIKE BUTTON (Gallery)
+    // ============================================
+    const likeButtons = document.querySelectorAll('.like-btn');
+    
+    if (likeButtons.length > 0) {
+        likeButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.stopPropagation();
+                
+                // Toggle like state
+                this.classList.toggle('liked');
+                
+                // Update like count
+                const currentText = this.textContent;
+                const currentLikes = parseInt(currentText.match(/\d+/));
+                
+                if (this.classList.contains('liked')) {
+                    this.textContent = `❤️ Liked (${currentLikes + 1})`;
+                    this.style.backgroundColor = '#ff6b6b';
+                    this.style.color = 'white';
+                } else {
+                    this.textContent = `❤️ Like (${currentLikes - 1})`;
+                    this.style.backgroundColor = 'transparent';
+                    this.style.color = '#0d6efd';
+                }
+            });
+        });
+    }
+    
+    // ============================================
+    // FEATURE 6: PRODUCT CARD CLICK
     // ============================================
     document.querySelectorAll('.product-card').forEach(card => {
         card.addEventListener('click', function() {
             const productName = this.querySelector('.card-title').textContent;
-            alert(`🔍 Viewing details for: ${productName}\n\nMore information coming soon!`);
+            const productPrice = this.querySelector('.badge').textContent;
+            alert(`🔍 Viewing details for: ${productName}\n\nPrice: ${productPrice}\nMore information coming soon!`);
         });
     });
+    
+    // ============================================
+    // FEATURE 7: GALLERY CARD CLICK
+    // ============================================
+    document.querySelectorAll('.gallery-card').forEach(card => {
+        card.addEventListener('click', function() {
+            const title = this.querySelector('.card-title').textContent;
+            const artist = this.querySelector('.card-text').textContent;
+            alert(`🎨 "${title}"\n\n${artist}\n\nClick "Like" if you enjoy this artwork!`);
+        });
+    });
+    
+    // ============================================
+    // FEATURE 8: SCROLL REVEAL (Bonus)
+    // ============================================
+    function revealOnScroll() {
+        const elements = document.querySelectorAll('.card, .product-item, .gallery-item');
+        
+        elements.forEach(element => {
+            const windowHeight = window.innerHeight;
+            const elementTop = element.getBoundingClientRect().top;
+            const revealPoint = 150;
+            
+            if (elementTop < windowHeight - revealPoint) {
+                element.style.opacity = '1';
+                element.style.transform = 'translateY(0)';
+            }
+        });
+    }
+    
+    // Set initial styles for scroll reveal
+    document.querySelectorAll('.card, .product-item, .gallery-item').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    });
+    
+    window.addEventListener('scroll', revealOnScroll);
+    window.addEventListener('load', revealOnScroll);
 });
 
 // ============================================
-// ADDITIONAL CSS ANIMATIONS (injected via JS)
+// CSS ANIMATIONS (injected via JS)
 // ============================================
 const styleSheet = document.createElement('style');
 styleSheet.textContent = `
